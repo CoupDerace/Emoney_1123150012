@@ -15,4 +15,10 @@ class AppConstants {
   static const String kFcmToken = 'fcm_token';
   static const String kAuthVerified = 'auth_verified';
 
+  // 2FA Method identifiers
+  static const String twoFaSmtp = 'smtp';
+  static const String twoFaTotp = 'totp';
+  static const String twoFaNotif = 'notif';
+
+  
 }
