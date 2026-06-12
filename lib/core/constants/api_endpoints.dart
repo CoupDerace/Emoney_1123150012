@@ -20,5 +20,9 @@ class ApiEndpoints {
   static const String totpRegister = '$_base/otp/totp/register';
   static const String totpVerify = '$_base/otp/totp/verify';
 
+  // Account
+  static const String account = '$_base/account';
+  static const String transactions = '$_base/account/transactions';
+
   
 }
