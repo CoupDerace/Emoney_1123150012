@@ -32,3 +32,16 @@ class InvalidOtpFailure extends Failure {
   const InvalidOtpFailure([super.message = 'Kode OTP tidak valid atau sudah kadaluarsa.']);
 }
 
+class InsufficientBalanceFailure extends Failure {
+  final double balance;
+  final double amount;
+  const InsufficientBalanceFailure({
+    required this.balance,
+    required this.amount,
+    String message = 'Saldo tidak cukup.',
+  }) : super(message);
+
+  @override
+  List<Object?> get props => [message, balance, amount];
+}
+
