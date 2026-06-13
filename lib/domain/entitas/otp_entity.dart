@@ -1,0 +1,3 @@
+class TotpSetupEntity extends Equatable {
+  
+}
