@@ -5,6 +5,8 @@ abstract class AuthRepository {
   Future<UserEntity> getMe();
   Future<void> updateFcmToken(String fcmToken);
   Future<void> logout();
+  Future<String?> getSavedToken();
+  Future<UserEntity?> getSavedUser();
 
 
 }
