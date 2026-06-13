@@ -10,6 +10,9 @@ class AccountModel extends AccountEntity {
 
   factory AccountModel.fromJson(Map<String, dynamic> json) {
     return AccountModel(
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
+      balance: (json['balance'] as num).toDouble(),
     );
   }
 }
