@@ -40,3 +40,12 @@ class SecureStorageDatasourceImpl implements SecureStorageDatasource {
   Future<void> deleteToken() async {
     await _storage.delete(key: AppConstants.kJwtToken);
   }
+
+  Future<void> save2faMethod(String method) async {
+    await _storage.write(key: AppConstants.k2faMethod, value: method);
+  }
+
+  @override
+  Future<String?> get2faMethod() async {
+    return _storage.read(key: AppConstants.k2faMethod);
+  }
