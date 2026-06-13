@@ -1,9 +1,9 @@
-class AppTheme{
-   static ThemeData get light {
+class AppTheme {
+  static ThemeData get light {
     const fontFamily = 'PlusJakartaSans';
     return ThemeData(
-        useMaterial3: true,
-        fontFamily: fontFamily,
+      useMaterial3: true,
+      fontFamily: fontFamily,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
         primary: AppColors.primary,
@@ -48,7 +48,10 @@ class AppTheme{
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.line, width: 1.5),
@@ -62,7 +65,11 @@ class AppTheme{
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
       ),
-      
-    )
+      dividerColor: AppColors.line2,
+      dividerTheme: const DividerThemeData(
+        color: AppColors.line2,
+        thickness: 1,
+      ),
+    );
   }
 }
