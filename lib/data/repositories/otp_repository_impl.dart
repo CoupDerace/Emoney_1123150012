@@ -50,5 +50,20 @@ class OtpRepositoryImpl implements OtpRepository {
     }
   }
 
-  
+  @override
+  Future<bool> verifyTotp(String code) async {
+    try {
+      final enabled = await _remote.verifyTotp(code);
+      if (enabled) {
+        await _authRepo.setAuthVerified(true);
+      }
+      return enabled;
+    } on InvalidOtpException catch (e) {
+      throw InvalidOtpFailure(e.message);
+    } on ServerException catch (e) {
+      throw ServerFailure(e.message);
+    } on NetworkException catch (e) {
+      throw NetworkFailure(e.message);
+    }
+  }
 }
