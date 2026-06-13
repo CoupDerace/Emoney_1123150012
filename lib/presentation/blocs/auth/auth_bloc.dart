@@ -57,5 +57,10 @@ class AuthError extends AuthState {
 }
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final VerifyFirebaseTokenUsecase _verifyToken;
+  final GetMeUsecase _getMe;
+  final LogoutUsecase _logout;
+  final AuthRepository _authRepo;
+
   
 }
