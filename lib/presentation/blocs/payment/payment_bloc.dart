@@ -78,5 +78,14 @@ class PaymentError extends PaymentState {
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   final TopupUsecase _topup;
   final TransferUsecase _transfer;
+  PaymentBloc({required TopupUsecase topup, required TransferUsecase transfer})
+    : _topup = topup,
+      _transfer = transfer,
+      super(PaymentInitial()) {
+    on<PaymentTopupRequested>(_onTopup);
+    on<PaymentTransferRequested>(_onTransfer);
+    on<PaymentReset>((_, emit) => emit(PaymentInitial()));
+  }
+
   
 }
