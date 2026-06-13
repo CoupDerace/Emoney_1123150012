@@ -24,5 +24,8 @@ sl.registerLazySingleton<OtpRemoteDatasource>(
 sl.registerLazySingleton<AccountRemoteDatasource>(
   () => AccountRemoteDatasourceImpl(sl()),
 );
+sl.registerLazySingleton<PaymentRemoteDatasource>(
+  () => PaymentRemoteDatasourceImpl(sl()),
+);
 
 }
