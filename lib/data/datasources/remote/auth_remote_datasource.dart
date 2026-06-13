@@ -56,4 +56,9 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<void> updateFcmToken(String fcmToken) async {
     await _client.put(ApiEndpoints.fcmToken, data: {'fcm_token': fcmToken});
   }
+
+  @override
+  void clearAuthToken() {
+    _client.clearAuthToken();
+  }
 }
