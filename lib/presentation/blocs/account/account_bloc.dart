@@ -39,10 +39,14 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc({
     required GetAccountUsecase getAccount,
     required GetTransactionsUsecase getTransactions,
-  })  : _getAccount = getAccount,
-        _getTransactions = getTransactions,
-        super(AccountInitial()) {
+  }) : _getAccount = getAccount,
+       _getTransactions = getTransactions,
+       super(AccountInitial()) {
     on<AccountLoadRequested>(_onLoad);
     on<AccountRefreshRequested>(_onLoad);
+  }
+
+  Future<void> _onLoad(AccountEvent event, Emitter<AccountState> emit) async {
+    
   }
 }
