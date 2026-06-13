@@ -47,6 +47,17 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   }
 
   Future<void> _onLoad(AccountEvent event, Emitter<AccountState> emit) async {
-    
+    if (state is! AccountLoaded) emit(AccountLoading());
+    try {
+      final account = await _getAccount();
+      final transactions = await _getTransactions();
+      emit(AccountLoaded(account: account, transactions: transactions));
+    } on ServerFailure catch (e) {
+      emit(AccountError(e.message));
+    } on NetworkFailure catch (e) {
+      emit(AccountError(e.message));
+    } catch (e) {
+      emit(AccountError('Gagal memuat data akun.'));
+    }
   }
 }
