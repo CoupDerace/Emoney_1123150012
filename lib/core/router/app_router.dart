@@ -57,4 +57,9 @@ class AppRouter {
                       : location.contains('akun')
                           ? 'akun'
                           : 'home';
+
+              return _withAccount(Scaffold(
+                body: child,
+                bottomNavigationBar: AppTabBar(
+                   
 }
