@@ -82,6 +82,7 @@ class AppRouter {
             ],
           ),
 
-          
+          GoRoute(path: '/topup', builder: (_, __) => _withPayment(const TopUpPage())),
+          GoRoute(path: '/transfer', builder: (_, __) => const TransferPage()),
 
 }
