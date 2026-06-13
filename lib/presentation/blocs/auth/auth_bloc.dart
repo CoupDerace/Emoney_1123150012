@@ -109,6 +109,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(AuthLoading());
-    
+    try{
+      final result = await _verifyToken(event.firebaseToken);
+      emit(AuthNeedsVerification(result.user, result.token));
+    }
   }
 }
