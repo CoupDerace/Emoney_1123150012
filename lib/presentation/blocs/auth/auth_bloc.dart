@@ -93,5 +93,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthUnauthenticated());
       return;
     }
+    final verified = await _authRepo.isAuthVerified();
+    if (!verified) {
+      // Login berhasil tapi 2FA belum dikonfirmasi sebelum app ditutup →
+      // anggap sesi tidak valid, mulai ulang dari awal (login/Google chooser).
+      await _authRepo.logout();
+      emit(AuthUnauthenticated());
+      return;
+    }
   }
 }
