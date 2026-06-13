@@ -58,4 +58,8 @@ sl.registerLazySingleton(() => VerifyTotpUsecase(sl()));
   sl.registerLazySingleton(() => GetAccountUsecase(sl()));
   sl.registerLazySingleton(() => GetTransactionsUsecase(sl()));
 
+// Use Cases — Payment
+  sl.registerLazySingleton(() => TopupUsecase(sl()));
+  sl.registerLazySingleton(() => TransferUsecase(sl()));
+  
 }
