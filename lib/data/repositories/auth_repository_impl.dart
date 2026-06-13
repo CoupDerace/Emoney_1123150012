@@ -59,4 +59,13 @@ class AuthRepositoryImpl implements AuthRepository {
       throw NetworkFailure(e.message);
     }
   }
+
+  @override
+  Future<void> updateFcmToken(String fcmToken) async {
+    try {
+      await _remote.updateFcmToken(fcmToken);
+    } catch (_) {
+      // Non-critical, silently ignore
+    }
+  }
 }
