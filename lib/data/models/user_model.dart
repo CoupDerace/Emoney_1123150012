@@ -24,4 +24,16 @@ class UserModel extends UserEntity {
       twoFaMethod: json['two_fa_method'] as String?,
     );
   }
-  
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'firebase_uid': firebaseUid,
+      'email': email,
+      'name': name,
+      'role': role,
+      'email_verified': emailVerified,
+      'totp_enabled': totpEnabled,
+      'two_fa_method': twoFaMethod,
+    };
+  }
