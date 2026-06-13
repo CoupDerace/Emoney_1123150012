@@ -28,5 +28,23 @@ class AppTextStyles {
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
   );
-  
+  static const TextStyle titleLg = TextStyle(
+    fontFamily: _font,
+    fontSize: 17,
+    fontWeight: FontWeight.w800,
+    color: AppColors.ink,
+    letterSpacing: -0.2,
+  );
+  static const TextStyle titleMd = TextStyle(
+    fontFamily: _font,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: AppColors.ink,
+  );
+  static const TextStyle titleSm = TextStyle(
+    fontFamily: _font,
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.ink,
+  );
 }
