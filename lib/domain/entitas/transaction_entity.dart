@@ -11,6 +11,13 @@ class TransactionEntity extends Equatable {
   final DateTime createdAt;
 
   const TransactionEntity({
-    
+    required this.id,
+    required this.accountId,
+    required this.amount,
+    required this.type,
+    required this.description,
+    required this.balanceBefore,
+    required this.balanceAfter,
+    required this.createdAt,
   })
 }
