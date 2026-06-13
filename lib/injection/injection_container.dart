@@ -5,4 +5,9 @@ Future<void> init() async {
   const secureStorage = FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
+
+  // Core
+  sl.registerLazySingleton<ApiClient>(() => ApiClient());
+
+  
 }
