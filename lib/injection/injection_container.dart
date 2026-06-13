@@ -1,5 +1,8 @@
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  
+  // External
+  const secureStorage = FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
 }
