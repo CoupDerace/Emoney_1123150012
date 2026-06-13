@@ -37,4 +37,15 @@ class AuthRepositoryImpl implements AuthRepository {
       throw NetworkFailure(e.message);
     }
   }
+
+  @override
+  Future<void> verifyEmailOtp(String code) async {
+    try {
+      await _remote.verifyEmailOtp(code);
+    } on ServerException catch (e) {
+      throw ServerFailure(e.message, errorCode: e.errorCode);
+    } on NetworkException catch (e) {
+      throw NetworkFailure(e.message);
+    }
+  }
 }
