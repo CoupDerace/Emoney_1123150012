@@ -11,3 +11,6 @@ class TransactionModel extends TransactionEntity {
     required super.balanceAfter,
     required super.createdAt,
   });
+
+  factory TransactionModel.fromJson(Map<String, dynamic> json) {
+  }
