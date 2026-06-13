@@ -18,4 +18,6 @@ class TotpSetupEntity extends Equatable {
 class OtpSentEntity extends Equatable {
   final String otpType;
   final int expiresIn;
+
+  const OtpSentEntity({required this.otpType, required this.expiresIn});
 }
