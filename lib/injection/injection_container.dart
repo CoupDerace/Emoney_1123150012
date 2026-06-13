@@ -14,5 +14,9 @@ Future<void> init() async {
   () => SecureStorageDatasourceImpl(secureStorage),
 );
 
+  // Remote Data Source
+  sl.registerLazySingleton<AuthRemoteDatasource>(
+  () => AuthRemoteDatasourceImpl(sl()),
+);
 
 }
