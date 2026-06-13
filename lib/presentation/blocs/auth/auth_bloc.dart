@@ -88,5 +88,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthUnauthenticated());
       return;
     }
+    final user = await _authRepo.getSavedUser();
+    if (user == null) {
+      emit(AuthUnauthenticated());
+      return;
+    }
   }
 }
