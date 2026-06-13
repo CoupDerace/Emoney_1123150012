@@ -5,3 +5,7 @@ class GetAccountUsecase{
   GetAccountUsecase(this._repository);
   Future<AccountEntity> call() => _repository.getAccount();
 }
+
+class GetTransactionsUsecase{
+  
+}
