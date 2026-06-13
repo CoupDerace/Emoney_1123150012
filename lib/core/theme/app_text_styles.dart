@@ -65,4 +65,16 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.slate500,
   );
+  static const TextStyle caption = TextStyle(
+    fontFamily: _font,
+    fontSize: 12.5,
+    fontWeight: FontWeight.w500,
+    color: AppColors.slate400,
+  );
+  static const TextStyle label = TextStyle(
+    fontFamily: _font,
+    fontSize: 13.5,
+    fontWeight: FontWeight.w600,
+    color: AppColors.slate600,
+  );
 }
