@@ -15,3 +15,6 @@ class TotpSetupEntity extends Equatable {
   List<Object?> get props => [secret, qrCode, issuer, account];
 }
 
+class OtpSentEntity extends Equatable {
+  
+}
