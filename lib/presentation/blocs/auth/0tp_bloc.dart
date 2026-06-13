@@ -75,4 +75,24 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
   final ConfirmOtpUsecase _confirm;
   final RegisterTotpUsecase _registerTotp;
   final VerifyTotpUsecase _verifyTotp;
+
+  OtpBloc({
+    required SendOtpFirebaseUsecase sendFirebase,
+    required SendOtpEmailUsecase sendEmail,
+    required ConfirmOtpUsecase confirm,
+    required RegisterTotpUsecase registerTotp,
+    required VerifyTotpUsecase verifyTotp,
+  })  : _sendFirebase = sendFirebase,
+        _sendEmail = sendEmail,
+        _confirm = confirm,
+        _registerTotp = registerTotp,
+        _verifyTotp = verifyTotp,
+        super(OtpInitial()) {
+    on<OtpSendFirebase>(_onSendFirebase);
+    on<OtpSendEmail>(_onSendEmail);
+    on<OtpConfirm>(_onConfirm);
+    on<OtpRegisterTotp>(_onRegisterTotp);
+    on<OtpVerifyTotp>(_onVerifyTotp);
+    on<OtpReset>((_, emit) => emit(OtpInitial()));
+  }
 }
