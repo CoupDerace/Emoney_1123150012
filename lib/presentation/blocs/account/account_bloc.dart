@@ -33,5 +33,6 @@ class AccountError extends AccountState {
 }
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  
+  final GetAccountUsecase _getAccount;
+  final GetTransactionsUsecase _getTransactions;
 }
