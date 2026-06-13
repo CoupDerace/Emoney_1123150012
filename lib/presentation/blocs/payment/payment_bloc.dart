@@ -99,5 +99,24 @@ Future<void> _onTopup(PaymentTopupRequested event, Emitter<PaymentState> emit) a
     }
   }
 
-  
+  Future<void> _onTransfer(PaymentTransferRequested event, Emitter<PaymentState> emit) async {
+    emit(PaymentLoading());
+    try {
+      final result = await _transfer(
+        amount: event.amount,
+        description: event.description,
+        otpCode: event.otpCode,
+        otpType: event.otpType,
+      );
+      emit(PaymentTransferSuccess(result));
+    } on InvalidOtpFailure catch (e) {
+      emit(PaymentInvalidOtp(e.message));
+    } on InsufficientBalanceFailure catch (e) {
+      emit(PaymentInsufficientBalance(balance: e.balance, amount: e.amount));
+    } on ServerFailure catch (e) {
+      emit(PaymentError(e.message));
+    } on NetworkFailure catch (e) {
+      emit(PaymentError(e.message));
+    }
+  }
 }
