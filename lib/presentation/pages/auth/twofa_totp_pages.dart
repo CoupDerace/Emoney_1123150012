@@ -67,6 +67,8 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
       listener: (context, state) {
         if (state is OtpTotpSetup) {
           setState(() => _step = 'scan');
+        } else if (state is OtpTotpEnabled || state is OtpVerified) {
+          context.go('/home');
         } 
     );
   }
