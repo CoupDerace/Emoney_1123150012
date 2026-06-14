@@ -111,3 +111,10 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
                               fontWeight: FontWeight.w600,
                             )),
                       ],
+                      const SizedBox(height: 18),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.amberSurface,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
