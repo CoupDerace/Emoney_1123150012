@@ -98,4 +98,16 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   Widget build(BuildContext context) {
     final email = FirebaseAuth.instance.currentUser?.email ?? 'email kamu';
 
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                icon: const Icon(DkgIcons.arrowLeft, color: AppColors.ink),
+                onPressed: () => context.go('/register'),
+              ),
+            ),
     
