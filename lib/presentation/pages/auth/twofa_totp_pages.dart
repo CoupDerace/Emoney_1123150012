@@ -229,3 +229,11 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
               ],
             ),
           ),
+          const SizedBox(height: 24),
+          AppButton(
+            label: 'Saya sudah memindai',
+            onPressed: () => setState(() => _step = 'code'),
+          ),
+        ],
+      ),
+    );
