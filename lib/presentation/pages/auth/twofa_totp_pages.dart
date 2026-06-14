@@ -6,3 +6,13 @@ class TwoFATotpPage extends StatefulWidget {
   @override
   State<TwoFATotpPage> createState() => _TwoFATotpPageState();
 }
+
+class _TwoFATotpPageState extends State<TwoFATotpPage> {
+  String _step = 'loading'; // loading, scan, code
+  String _code = '';
+  bool _hasError = false;
+  bool _copied = false;
+  int _ttl = 30;
+  Timer? _ticker;
+
+  
