@@ -33,3 +33,37 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
     _ticker?.cancel();
     super.dispose();
   }
+
+   void _onCodeChanged(String v) {
+    setState(() { _code = v; _hasError = false; });
+    if (v.length == 6) {
+      context.read<OtpBloc>().add(OtpVerifyTotp(v));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<OtpBloc, OtpState>(
+      listener: (context, state) {
+        if (state is OtpTotpSetup) {
+          setState(() => _step = 'scan');
+        } else if (state is OtpTotpEnabled || state is OtpVerified) {
+          context.go('/home');
+        } else if (state is OtpInvalid) {
+          setState(() => _hasError = true);
+          Future.delayed(const Duration(milliseconds: 650), () {
+            if (mounted) setState(() { _code = ''; _hasError = false; });
+          });
+        } else if (state is OtpError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message), backgroundColor: AppColors.red),
+          );
+        }
+      },
+
+      @override
+  Widget build(BuildContext context) {
+    return BlocListener<OtpBloc, OtpState>(
+    );
+  }
+},
