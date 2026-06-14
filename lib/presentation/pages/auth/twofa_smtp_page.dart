@@ -64,3 +64,10 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
           );
         }
       },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
