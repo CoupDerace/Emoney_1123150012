@@ -61,4 +61,24 @@ class _HistoryPageState extends State<HistoryPage> {
                           ))
                       .toList(),
                 ),
+                Expanded(
+            child: BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, state) {
+                if (state is AccountLoading) {
+                  return const Center(child: CircularProgressIndicator(color: AppColors.primary));
+                }
+                if (state is AccountError) {
+                  return Center(child: Text(state.message, style: const TextStyle(color: AppColors.slate400)));
+                }
+                if (state is AccountLoaded) {
+                  List<TransactionEntity> txns = state.transactions;
+                  if (_tab == 'in') txns = txns.where((t) => t.isCredit).toList();
+                  if (_tab == 'out') txns = txns.where((t) => !t.isCredit).toList();
+
+                  if (txns.isEmpty) {
+                    return const Center(
+                      child: Text('Tidak ada transaksi',
+                          style: TextStyle(fontFamily: 'PlusJakartaSans', color: AppColors.slate400)),
+                    );
+                  }
   }
