@@ -7,3 +7,12 @@ class TwoFANotifPage extends StatefulWidget {
   State<TwoFANotifPage> createState() => _TwoFANotifPageState();
 }
 
+class _TwoFANotifPageState extends State<TwoFANotifPage> {
+  String _phase = 'waiting'; // waiting, approved
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<OtpBloc>().add(OtpSendFirebase());
+  }
+
