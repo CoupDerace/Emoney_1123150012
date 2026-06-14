@@ -166,4 +166,41 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
               ),
             ),
           ),
-},
+          const SizedBox(height: 18),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            decoration: BoxDecoration(color: AppColors.bg, borderRadius: BorderRadius.circular(14)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Atau masukkan kunci manual',
+                    style: TextStyle(
+                      fontFamily: 'PlusJakartaSans',
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.slate400,
+                      letterSpacing: 0.5,
+                    )),
+                const SizedBox(height: 6),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        state.entity.secret,
+                        softWrap: true,
+                        style: const TextStyle(
+                          fontFamily: 'Courier',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.ink,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ),
+                    
+                  ],
+                ),
+              ],
+            ),
+          ),
