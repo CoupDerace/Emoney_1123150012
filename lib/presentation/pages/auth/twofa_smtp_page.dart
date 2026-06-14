@@ -153,3 +153,14 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
                                     fontSize: 14,
                                   )),
                             ),
+                          ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
