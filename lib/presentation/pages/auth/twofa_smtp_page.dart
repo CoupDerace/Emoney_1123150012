@@ -71,3 +71,8 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
             children: [
               Align(
                 alignment: Alignment.topLeft,
+                child: IconButton(
+                  icon: const Icon(DkgIcons.arrowLeft, color: AppColors.ink),
+                  onPressed: () => context.go(widget.mode == 'setup' ? '/setup-2fa' : '/login'),
+                ),
+              ),
