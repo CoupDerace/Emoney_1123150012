@@ -13,3 +13,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   bool _loading = false;
   String? _errorMessage;
   Timer? _countdown;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
