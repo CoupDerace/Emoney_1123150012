@@ -28,3 +28,9 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
       else setState(() => _timer--);
     });
   }
+
+  @override
+  void dispose() {
+    _countdown?.cancel();
+    super.dispose();
+  }
