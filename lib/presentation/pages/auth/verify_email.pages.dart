@@ -200,4 +200,16 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                           valueColor: AlwaysStoppedAnimation(AppColors.primary),
                         ),
                       ),
+                    ] else if (_hasError && _errorMessage != null) ...[
+                      const SizedBox(height: 12),
+                      Text(
+                        _errorMessage!,
+                        style: const TextStyle(
+                          fontFamily: 'PlusJakartaSans',
+                          color: AppColors.red,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
     
