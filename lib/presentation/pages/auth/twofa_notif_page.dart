@@ -43,3 +43,17 @@ class _TwoFANotifPageState extends State<TwoFANotifPage> {
                   onPressed: () => context.go(widget.mode == 'setup' ? '/setup-2fa' : '/login'),
                 ),
               ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(28, 8, 28, 28),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      FeatureIcon(
+                        icon: _phase == 'approved'
+                            ? Icons.verified_user_outlined
+                            : Icons.notifications_outlined,
+                        tone: 'green',
+                        size: 82,
+                        iconSize: 40,
+                      ),
