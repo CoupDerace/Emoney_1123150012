@@ -41,3 +41,9 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
       context.read<OtpBloc>().add(OtpConfirm(code: v, otpType: AppConstants.otpTypeEmail));
     }
   }
+
+  override
+  Widget build(BuildContext context) {
+    return BlocListener<OtpBloc, OtpState>(
+      
+    )}
