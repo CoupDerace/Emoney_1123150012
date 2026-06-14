@@ -48,3 +48,27 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       _verify(value);
     }
   }
+
+  Future<void> _verify(String code) async {
+    setState(() => _loading = true);
+    try {
+      await sl<VerifyEmailOtpUsecase>()(code);
+      if (mounted) context.go('/setup-2fa');
+    } on ServerFailure catch (e) {
+      final isInvalidOtp = e.errorCode == 'INVALID_OTP';
+      setState(() {
+        _hasError = true;
+        _errorMessage = isInvalidOtp ? 'Kode salah atau sudah kadaluarsa' : e.message;
+      });
+      Future.delayed(const Duration(milliseconds: 650), () {
+        if (mounted) setState(() { _code = ''; _hasError = false; });
+      });
+    } catch (_) {
+      setState(() { _hasError = true; _errorMessage = 'Terjadi kesalahan, coba lagi'; });
+      Future.delayed(const Duration(milliseconds: 650), () {
+        if (mounted) setState(() { _code = ''; _hasError = false; });
+      });
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
