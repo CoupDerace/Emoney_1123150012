@@ -83,3 +83,11 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
                     children: [
                       const FeatureIcon(icon: DkgIcons.mail, tone: 'blue', size: 74, iconSize: 36),
                       const SizedBox(height: 18),
+                      const Text('Masukkan Email OTP',
+                          style: TextStyle(
+                            fontFamily: 'PlusJakartaSans',
+                            fontSize: 23,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.ink,
+                            letterSpacing: -0.3,
+                          )),
