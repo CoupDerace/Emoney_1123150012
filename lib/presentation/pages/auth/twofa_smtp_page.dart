@@ -76,3 +76,10 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
                   onPressed: () => context.go(widget.mode == 'setup' ? '/setup-2fa' : '/login'),
                 ),
               ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(28, 8, 28, 24),
+                  child: Column(
+                    children: [
+                      const FeatureIcon(icon: DkgIcons.mail, tone: 'blue', size: 74, iconSize: 36),
+                      const SizedBox(height: 18),
