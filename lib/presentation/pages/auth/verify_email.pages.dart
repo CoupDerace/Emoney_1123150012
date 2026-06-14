@@ -37,3 +37,14 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     _countdown?.cancel();
     super.dispose();
   }
+
+  void _onCodeChanged(String value) {
+    setState(() {
+      _code = value;
+      _hasError = false;
+      _errorMessage = null;
+    });
+    if (value.length == 6) {
+      _verify(value);
+    }
+  }
