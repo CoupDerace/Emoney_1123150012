@@ -119,4 +119,27 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
   }
     );
   }
+
+  Widget _buildScanStep(OtpTotpSetup state, BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(28, 8, 28, 24),
+      child: Column(
+        children: [
+          const FeatureIcon(icon: DkgIcons.smartphone, tone: 'violet', size: 74, iconSize: 36),
+          const SizedBox(height: 18),
+          const Text('Hubungkan Authenticator',
+              style: TextStyle(
+                fontFamily: 'PlusJakartaSans',
+                fontSize: 23,
+                fontWeight: FontWeight.w800,
+                color: AppColors.ink,
+                letterSpacing: -0.3,
+              )),
+          const SizedBox(height: 8),
+          const Text(
+            'Pindai QR ini dengan Google Authenticator, Authy, atau aplikasi sejenis.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14.5, color: AppColors.slate500, height: 1.55),
+          ),
+          const SizedBox(height: 22),
 },
