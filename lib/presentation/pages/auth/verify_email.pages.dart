@@ -110,4 +110,23 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 onPressed: () => context.go('/register'),
               ),
             ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(28, 14, 28, 28),
+                child: Column(
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: 78,
+                          height: 78,
+                          decoration: BoxDecoration(
+                            color: AppColors.primarySurface,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: const Center(
+                            child: Icon(DkgIcons.mail, size: 36, color: AppColors.primary),
+                          ),
+                        ),
     
