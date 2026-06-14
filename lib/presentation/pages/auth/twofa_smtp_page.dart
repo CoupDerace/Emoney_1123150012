@@ -10,5 +10,6 @@ class TwoFASmtpPage extends StatefulWidget {
 class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
   String _code = '';
   bool _hasError = false;
-  
+  int _timer = AppConstants.otpResendSeconds;
+  Timer? _countdown;
 
