@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors{
-  // Primary Red (Crimson)
-  static const Color primary = Color(0xFFDC143C);
-  static const Color primaryLight = Color(0xFFE34261);
-  static const Color primaryDark = Color(0xFFA50F2D);
-  static const Color primarySurface = Color(0xFFFDE8EC);
-  static const Color primaryBorder = Color(0xFFF7B8C4);
+  // Primary Amber
+  static const Color primary = Color(0xFFFFBF00); // Amber
+  static const Color primaryLight = Color(0xFFFFCF40);
+  static const Color primaryDark = Color(0xFFC99700);
+  static const Color primarySurface = Color(0xFFFFF3CC);
+  static const Color primaryBorder = Color(0xFFFFE699);
 
   // Semantic
   static const Color green = Color(0xFF16A571);
@@ -66,7 +66,7 @@ class AppColors{
   ];
   static List<BoxShadow> shadowPrimary = [
     BoxShadow(
-      color: Color(0x52DC143C),
+      color: Color(0x52FFBF00),
       blurRadius: 22,
       spreadRadius: 0,
       offset: Offset(0, 10),

@@ -2,7 +2,7 @@ import 'package:dompet_helm/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-  static const String _font = 'PlusJakartaSans';
+  static const String? _font = null;
 
   static const TextStyle h1 = TextStyle(
     fontFamily: _font,

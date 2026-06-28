@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 class AppTheme {
   static ThemeData get light {
-    const fontFamily = 'PlusJakartaSans';
+    const String? fontFamily = null;
     return ThemeData(
       useMaterial3: true,
       fontFamily: fontFamily,
@@ -78,7 +78,7 @@ class AppTheme {
   }
 
   static ThemeData get dark {
-    const fontFamily = 'PlusJakartaSans';
+    const String? fontFamily = null;
     return ThemeData(
       useMaterial3: true,
       fontFamily: fontFamily,
