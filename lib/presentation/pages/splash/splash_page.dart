@@ -39,11 +39,18 @@ class _SplashPageState extends State<SplashPage> {
       },
       child: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(color: AppColors.bg), // Abu-abu gelap / dark grey
+          decoration: BoxDecoration(
+            color: AppColors.bg, // Abu-abu gelap / dark grey
+            image: const DecorationImage(
+              image: AssetImage('assets/images/mega_mendung.png'),
+              fit: BoxFit.cover,
+              opacity: 0.25, // Motif batik mega mendung yang cukup terlihat
+            ),
+          ),
           child: SafeArea(
             child: Stack(
               children: [
-                // Glowing Ambient Motif
+                // Glowing Ambient Motif - Diperjelas lagi
                 Positioned(
                   top: -150,
                   right: -100,
@@ -54,7 +61,7 @@ class _SplashPageState extends State<SplashPage> {
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          AppColors.primary.withValues(alpha: 0.45),
+                          AppColors.primary.withValues(alpha: 0.6),
                           Colors.transparent,
                         ],
                       ),
@@ -71,7 +78,7 @@ class _SplashPageState extends State<SplashPage> {
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          AppColors.primary.withValues(alpha: 0.35),
+                          AppColors.primary.withValues(alpha: 0.5),
                           Colors.transparent,
                         ],
                       ),
