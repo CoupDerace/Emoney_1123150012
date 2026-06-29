@@ -39,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
       },
       child: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(gradient: AppColors.primaryGradient),
+          decoration: const BoxDecoration(color: AppColors.bg), // Abu-abu gelap / dark grey
           child: SafeArea(
             child: Stack(
               children: [
@@ -52,7 +52,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 320,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.white.withValues(alpha: 0.08),
+                      color: Colors.black.withValues(alpha: 0.08),
                     ),
                   ),
                 ),
@@ -64,7 +64,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 220,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.white.withValues(alpha: 0.07),
+                      color: Colors.black.withValues(alpha: 0.07),
                     ),
                   ),
                 ),
@@ -74,7 +74,7 @@ class _SplashPageState extends State<SplashPage> {
                   child: Column(
                     children: [
                       const Spacer(),
-                      const AppLogo(size: 92, light: true),
+                      const AppLogo(size: 92, light: false),
                       const SizedBox(height: 26),
                       const Text(
                         'Dompet Kampus',
@@ -82,7 +82,7 @@ class _SplashPageState extends State<SplashPage> {
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
-                          color: Colors.white,
+                          color: Colors.black, // Teks warna hitam sesuai instruksi
                           letterSpacing: -0.5,
                         ),
                       ),
@@ -93,7 +93,7 @@ class _SplashPageState extends State<SplashPage> {
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                          color: Colors.black,
                           letterSpacing: 3,
                         ),
                       ),
@@ -104,23 +104,56 @@ class _SplashPageState extends State<SplashPage> {
                         style: TextStyle(
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 15,
-                          color: Colors.white,
+                          color: Colors.black,
                           height: 1.5,
                         ),
                       ),
                       const Spacer(),
                       Column(
                         children: [
-                          AppButton(
-                            label: 'Buat Akun Baru',
-                            variant: AppButtonVariant.white,
-                            onPressed: () => context.push('/register'),
+                          GestureDetector(
+                            onTap: () => context.push('/register'),
+                            child: Container(
+                              width: double.infinity,
+                              height: 54,
+                              decoration: BoxDecoration(
+                                color: AppColors.amber, // Button amber
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Buat Akun Baru',
+                                style: TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black, // Teks hitam
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 11),
-                          AppButton(
-                            label: 'Masuk ke Akun',
-                            variant: AppButtonVariant.outlineWhite,
-                            onPressed: () => context.push('/login'),
+                          GestureDetector(
+                            onTap: () => context.push('/login'),
+                            child: Container(
+                              width: double.infinity,
+                              height: 54,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                border: Border.all(color: AppColors.amber, width: 2), // Outline amber
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Masuk ke Akun',
+                                style: TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black, // Teks hitam
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -136,4 +169,5 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 }
+
 
