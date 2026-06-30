@@ -24,16 +24,15 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _agree = true;
   bool _loading = false;
 
-  bool get _valid => _name.length > 1 && _email.contains('@') && _pw.length >= 6 && _agree;
+  bool get _valid =>
+      _name.length > 1 && _email.contains('@') && _pw.length >= 6 && _agree;
 
   Future<void> _register() async {
     setState(() => _loading = true);
     try {
       // 1. Buat akun di Firebase
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _email,
-        password: _pw,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: _email, password: _pw);
       await credential.user?.updateDisplayName(_name);
 
       // 2. Ambil Firebase ID Token lalu kirim ke backend
@@ -47,7 +46,10 @@ class _RegisterPageState extends State<RegisterPage> {
     } on FirebaseAuthException catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? 'Registrasi gagal.'), backgroundColor: AppColors.red),
+          SnackBar(
+            content: Text(e.message ?? 'Registrasi gagal.'),
+            backgroundColor: AppColors.red,
+          ),
         );
       }
     } on ServerFailure catch (e) {
@@ -59,7 +61,10 @@ class _RegisterPageState extends State<RegisterPage> {
     } on NetworkFailure catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Tidak ada koneksi internet.'), backgroundColor: AppColors.red),
+          const SnackBar(
+            content: Text('Tidak ada koneksi internet.'),
+            backgroundColor: AppColors.red,
+          ),
         );
       }
     } catch (e) {
@@ -76,143 +81,229 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bg,
-      body: SafeArea(
-        child: Column(
+      backgroundColor:
+          Colors.transparent, // Transparan agar container bg terlihat
+      body: Container(
+        decoration: BoxDecoration(
+          color: AppColors.bg,
+          image: const DecorationImage(
+            image: AssetImage('assets/images/mega_mendung.png'),
+            fit: BoxFit.cover,
+            opacity: 0.25,
+          ),
+        ),
+        child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                icon: const Icon(DkgIcons.arrowLeft, color: AppColors.ink),
-                onPressed: () => context.go('/'),
+            // Glowing Ambient Motif
+            Positioned(
+              top: -150,
+              right: -100,
+              child: Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.primary.withValues(alpha: 0.6),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(26, 10, 26, 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Buat akun',
-                        style: TextStyle(
-                          fontFamily: 'PlusJakartaSans',
-                          fontSize: 27,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.ink,
-                          letterSpacing: -0.4,
-                        )),
-                    const SizedBox(height: 6),
-                    const Text('Daftar gratis dalam 1 menit',
-                        style: TextStyle(fontSize: 14.5, color: AppColors.slate500)),
-                    const SizedBox(height: 22),
-                    const SizedBox(height: 20),
-                    AppField(
-                      label: 'Nama lengkap',
-                      value: _name,
-                      onChanged: (v) => setState(() => _name = v),
-                      placeholder: 'Nama Lengkap',
-                      prefixIcon: const Icon(DkgIcons.user, size: 20),
+            Positioned(
+              bottom: -100,
+              left: -150,
+              child: Container(
+                width: 500,
+                height: 500,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.primary.withValues(alpha: 0.5),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SafeArea(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      icon: const Icon(
+                        DkgIcons.arrowLeft,
+                        color: Colors.white,
+                      ), // Ubah icon warna putih agar terlihat di background gelap
+                      onPressed: () => context.go('/'),
                     ),
-                    const SizedBox(height: 14),
-                    AppField(
-                      label: 'Email',
-                      value: _email,
-                      onChanged: (v) => setState(() => _email = v),
-                      placeholder: 'nama@email.com',
-                      keyboardType: TextInputType.emailAddress,
-                      prefixIcon: const Icon(DkgIcons.mail, size: 20),
-                    ),
-                    const SizedBox(height: 14),
-                    AppField(
-                      label: 'Kata sandi',
-                      value: _pw,
-                      onChanged: (v) => setState(() => _pw = v),
-                      obscureText: !_showPw,
-                      placeholder: 'Min. 6 karakter',
-                      prefixIcon: const Icon(DkgIcons.lock, size: 20),
-                      suffixIcon: IconButton(
-                        icon: Icon(_showPw ? DkgIcons.eyeOff : DkgIcons.eye,
-                            size: 20, color: AppColors.slate400),
-                        onPressed: () => setState(() => _showPw = !_showPw),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    GestureDetector(
-                      onTap: () => setState(() => _agree = !_agree),
-                      child: Row(
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(26, 10, 26, 24),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 150),
-                            width: 22,
-                            height: 22,
-                            decoration: BoxDecoration(
-                              color: _agree ? AppColors.primary  : AppColors.white,
-                              borderRadius: BorderRadius.circular(7),
-                              border: Border.all(
-                                color: _agree ? AppColors.primary : AppColors.line,
-                                width: 1.6,
-                              ),
+                          const Text(
+                            'Buat akun',
+                            style: TextStyle(
+                              fontFamily: 'PlusJakartaSans',
+                              fontSize: 27,
+                              fontWeight: FontWeight.w800,
+                              color: Colors
+                                  .white, // Sesuaikan warna teks agar terbaca
+                              letterSpacing: -0.4,
                             ),
-                            child: _agree
-                                ? const Icon(DkgIcons.check, size: 14, color: Colors.white)
-                                : null,
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: RichText(
-                              text: const TextSpan(
-                                style: TextStyle(
-                                  fontFamily: 'PlusJakartaSans',
-                                  fontSize: 13,
-                                  color: AppColors.slate500,
-                                  height: 1.5,
-                                ),
-                                children: [
-                                  TextSpan(text: 'Saya setuju dengan '),
-                                  TextSpan(
-                                    text: 'Syarat & Ketentuan',
-                                    style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
-                                  ),
-                                  TextSpan(text: ' dan '),
-                                  TextSpan(
-                                    text: 'Kebijakan Privasi',
-                                    style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
-                                  ),
-                                  TextSpan(text: '.'),
-                                ],
-                              ),
+                          const SizedBox(height: 6),
+                          const Text(
+                            'Daftar gratis dalam 1 menit',
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              color: AppColors.slate500,
                             ),
+                          ),
+                          const SizedBox(height: 22),
+                          const SizedBox(height: 20),
+                          AppField(
+                            label: 'Nama lengkap',
+                            value: _name,
+                            onChanged: (v) => setState(() => _name = v),
+                            placeholder: 'Nama Lengkap',
+                            prefixIcon: const Icon(DkgIcons.user, size: 20),
+                          ),
+                          const SizedBox(height: 14),
+                          AppField(
+                            label: 'Email',
+                            value: _email,
+                            onChanged: (v) => setState(() => _email = v),
+                            placeholder: 'nama@email.com',
+                            keyboardType: TextInputType.emailAddress,
+                            prefixIcon: const Icon(DkgIcons.mail, size: 20),
+                          ),
+                          const SizedBox(height: 14),
+                          AppField(
+                            label: 'Kata sandi',
+                            value: _pw,
+                            onChanged: (v) => setState(() => _pw = v),
+                            obscureText: !_showPw,
+                            placeholder: 'Min. 6 karakter',
+                            prefixIcon: const Icon(DkgIcons.lock, size: 20),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _showPw ? DkgIcons.eyeOff : DkgIcons.eye,
+                                size: 20,
+                                color: AppColors.slate400,
+                              ),
+                              onPressed: () =>
+                                  setState(() => _showPw = !_showPw),
+                            ),
+                          ),
+                          const SizedBox(height: 18),
+                          GestureDetector(
+                            onTap: () => setState(() => _agree = !_agree),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 150),
+                                  width: 22,
+                                  height: 22,
+                                  decoration: BoxDecoration(
+                                    color: _agree
+                                        ? AppColors.primary
+                                        : AppColors.white,
+                                    borderRadius: BorderRadius.circular(7),
+                                    border: Border.all(
+                                      color: _agree
+                                          ? AppColors.primary
+                                          : AppColors.line,
+                                      width: 1.6,
+                                    ),
+                                  ),
+                                  child: _agree
+                                      ? const Icon(
+                                          DkgIcons.check,
+                                          size: 14,
+                                          color: Colors.white,
+                                        )
+                                      : null,
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: RichText(
+                                    text: const TextSpan(
+                                      style: TextStyle(
+                                        fontFamily: 'PlusJakartaSans',
+                                        fontSize: 13,
+                                        color: AppColors.slate500,
+                                        height: 1.5,
+                                      ),
+                                      children: [
+                                        TextSpan(text: 'Saya setuju dengan '),
+                                        TextSpan(
+                                          text: 'Syarat & Ketentuan',
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        TextSpan(text: ' dan '),
+                                        TextSpan(
+                                          text: 'Kebijakan Privasi',
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        TextSpan(text: '.'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          AppButton(
+                            label: 'Daftar',
+                            onPressed: _valid ? _register : null,
+                            isLoading: _loading,
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Sudah punya akun? ',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ), // Ubah warna teks ke putih
+                              GestureDetector(
+                                onTap: () => context.go('/login'),
+                                child: const Text(
+                                  'Masuk',
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    AppButton(
-                      label: 'Daftar',
-                      onPressed: _valid ? _register : null,
-                      isLoading: _loading,
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Sudah punya akun? ',
-                            style: TextStyle(fontSize: 14, color: AppColors.ink)),
-                        GestureDetector(
-                          onTap: () => context.go('/login'),
-                          child: const Text('Masuk',
-                              style: TextStyle(
-                                fontFamily: 'PlusJakartaSans',
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -221,4 +312,3 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
-
