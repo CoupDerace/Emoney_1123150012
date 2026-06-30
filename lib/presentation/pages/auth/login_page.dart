@@ -108,40 +108,79 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.bg,
-        body: SafeArea(
-          child: Column(
+        backgroundColor: Colors.transparent, // Transparan agar container bg terlihat
+        body: Container(
+          decoration: BoxDecoration(
+            color: AppColors.bg,
+            image: const DecorationImage(
+              image: AssetImage('assets/images/mega_mendung.png'),
+              fit: BoxFit.cover,
+              opacity: 0.25,
+            ),
+          ),
+          child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(DkgIcons.arrowLeft, color: AppColors.ink),
-                  onPressed: () => context.go('/'),
+              // Glowing Ambient Motif
+              Positioned(
+                top: -150,
+                right: -100,
+                child: Container(
+                  width: 400,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        AppColors.primary.withValues(alpha: 0.6),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(26, 10, 26, 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const AppLogo(size: 50),
-                      const SizedBox(height: 20),
-                      Center(
-                        child: Image.asset(
-                          'assets/images/auth_illustration.png',
-                          height: 180,
-                        ),
+              Positioned(
+                bottom: -100,
+                left: -150,
+                child: Container(
+                  width: 500,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        AppColors.primary.withValues(alpha: 0.5),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SafeArea(
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        icon: const Icon(DkgIcons.arrowLeft, color: Colors.white), // Ubah icon warna putih agar terlihat di background gelap
+                        onPressed: () => context.go('/'),
                       ),
-                      const SizedBox(height: 22),
-                      const Text('Masuk',
-                          style: TextStyle(
-                            fontFamily: 'PlusJakartaSans',
-                            fontSize: 27,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.ink,
-                            letterSpacing: -0.4,
-                          )),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(26, 10, 26, 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppLogo(size: 50),
+                            const SizedBox(height: 32),
+                            const Text('Masuk',
+                                style: TextStyle(
+                                  fontFamily: 'PlusJakartaSans',
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white, // Sesuaikan warna teks agar terbaca
+                                  letterSpacing: -0.4,
+                                )),
                       const SizedBox(height: 6),
                       const Text('Selamat datang kembali',
                           style: TextStyle(fontSize: 14.5, color: AppColors.slate500)),
@@ -279,8 +318,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-        ),
-      ),
+        ), // Close Column
+      ), // Close SafeArea
+      ], // Close Stack
+      ), // Close Container
+      ), // Close Scaffold
     );
   }
 }
