@@ -39,123 +39,115 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: Container(
-            decoration: BoxDecoration(
-              color: AppColors.bg,
-              image: const DecorationImage(
-                image: AssetImage('assets/images/mega_mendung.png'),
-                fit: BoxFit.cover,
-                opacity: 0.25,
-              ),
+            decoration: const BoxDecoration(
+              gradient: AppColors
+                  .primaryGradient, // Background utama menjadi amber gradient
             ),
-            child: Stack(
-              children: [
-                // Glowing Ambient Motif
-                Positioned(
-                  top: -150,
-                  right: -100,
-                  child: Container(
-                    width: 400,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          AppColors.primary.withValues(alpha: 0.6),
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: -100,
-                  left: -150,
-                  child: Container(
-                    width: 500,
-                    height: 500,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          AppColors.primary.withValues(alpha: 0.5),
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                BlocBuilder<AccountBloc, AccountState>(
-                  builder: (context, accountState) {
-                    final balance = accountState is AccountLoaded
-                        ? accountState.account.balance
-                        : 0.0;
-                    final txns = accountState is AccountLoaded
-                        ? accountState.transactions
-                        : <TransactionEntity>[];
-                    final loading = accountState is AccountLoading;
+            child: BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, accountState) {
+                final balance = accountState is AccountLoaded
+                    ? accountState.account.balance
+                    : 0.0;
+                final txns = accountState is AccountLoaded
+                    ? accountState.transactions
+                    : <TransactionEntity>[];
+                final loading = accountState is AccountLoading;
 
-                    return RefreshIndicator(
-                      onRefresh: () async => context.read<AccountBloc>().add(
-                        AccountRefreshRequested(),
-                      ),
-                      color: AppColors.primary,
-                      child: SingleChildScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        child: Column(
-                          children: [
-                            // Gradient header
-                            _buildHeader(fullName, firstName, balance, loading),
+                return RefreshIndicator(
+                  onRefresh: () async => context.read<AccountBloc>().add(
+                    AccountRefreshRequested(),
+                  ),
+                  color: AppColors.primary,
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        // Gradient header
+                        _buildHeader(fullName, firstName, balance, loading),
 
-                            // Body - grouped for translation
-                            Transform.translate(
-                              offset: const Offset(0, -32),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: _buildMainActions(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: _buildFeatureGrid(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: _buildPointsRow(),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: _buildDeeplinkBanner(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                    ),
-                                    child: _buildTransactions(txns),
-                                  ),
-                                  const SizedBox(height: 24),
-                                ],
+                        // Body - grouped for translation
+                        Transform.translate(
+                          offset: const Offset(0, -32),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildMainActions(),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildFeatureGrid(),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildPointsRow(),
+                              ),
+                              const SizedBox(height: 16),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildDeeplinkBanner(),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildTransactions(txns),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildMainActions(),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildFeatureGrid(),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildPointsRow(),
+                              ),
+                              const SizedBox(height: 16),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildDeeplinkBanner(),
+                              ),
+                              const SizedBox(height: 24),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: _buildTransactions(txns),
+                              ),
+                              const SizedBox(height: 24),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         );
@@ -171,9 +163,14 @@ class _HomePageState extends State<HomePage> {
   ) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: AppColors.primaryGradient,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: AppColors.bg,
+        image: const DecorationImage(
+          image: AssetImage('assets/images/mega_mendung.png'),
+          fit: BoxFit.cover,
+          opacity: 0.25,
+        ),
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(36),
           bottomRight: Radius.circular(36),
         ),
