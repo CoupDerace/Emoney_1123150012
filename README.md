@@ -19,6 +19,171 @@ Aplikasi ini diimplementasikan menggunakan **Clean Architecture** untuk memisahk
 - **Presentation**: Berisi UI/Screens dan logika tampilan (*state management*) yang diatur menggunakan arsitektur BLoC (Business Logic Component).
 - **Injection**: Menangani pengelolaan dependensi (Dependency Injection) menggunakan `get_it`.
 
+**Struktur Folder (`lib/`):**
+```text
+lib/
+|   firebase_options.dart
+|   main.dart
+|   
++---core
+|   +---constants
+|   |       api_endpoints.dart
+|   |       app_constant.dart
+|   |       
+|   +---error
+|   |       exceptions.dart
+|   |       failures.dart
+|   |       
+|   +---network
+|   |       api_client.dart
+|   |       
+|   +---router
+|   |       app_router.dart
+|   |       
+|   +---services
+|   |       deeplink_callback_service.dart
+|   |       deeplink_service.dart
+|   |       
+|   +---theme
+|   |       app_color.dart
+|   |       app_text_styles.dart
+|   |       app_theme.dart
+|   |       
+|   \---utils
+|           app_bloc_observer.dart
+|           currency_formatter.dart
+|           data_formatter.dart
+|           
++---data
+|   +---datasources
+|   |   +---local
+|   |   |       secure_storage_datasource.dart
+|   |   |       
+|   |   \---remote
+|   |           account_remote_datasource.dart
+|   |           auth_remote_datasource.dart
+|   |           otp_remote_datasource.dart
+|   |           payment_remote_datasource.dart
+|   |           
+|   +---models
+|   |       account_model.dart
+|   |       transaction_model.dart
+|   |       user_model.dart
+|   |       
+|   \---repositories
+|           account_repository_impl.dart
+|           auth_repository_impl.dart
+|           otp_repository_impl.dart
+|           payment_repository_impl.dart
+|           
++---domain
+|   +---entities
+|   |       account_entity.dart
+|   |       otp_entity.dart
+|   |       payment_result_entity.dart
+|   |       transaction_entity.dart
+|   |       user_entity.dart
+|   |       
+|   +---repositories
+|   |       account_repository.dart
+|   |       auth_repository.dart
+|   |       otp_repository.dart
+|   |       payment_repository.dart
+|   |       
+|   \---usecases
+|       +---account
+|       |       get_account_usecase.dart
+|       |       
+|       +---auth
+|       |       get_me_usecase.dart
+|       |       logout_usecase.dart
+|       |       register_with_otp_usecase.dart
+|       |       send_otp_usecase.dart
+|       |       verify_email_otp_usecase.dart
+|       |       verify_firebase_token_usecase.dart
+|       |       
+|       \---payment
+|               payment_usecase.dart
+|               
++---injection
+|       injection_container.dart
+|       
++---presentation
+|   +---blocs
+|   |   +---account
+|   |   |       account_bloc.dart
+|   |   |       
+|   |   +---auth
+|   |   |       auth_bloc.dart
+|   |   |       otp_bloc.dart
+|   |   |       
+|   |   +---home
+|   |   \---payment
+|   |           payment_bloc.dart
+|   |           
+|   +---pages
+|   |   +---account
+|   |   |       account_page.dart
+|   |   |       
+|   |   +---auth
+|   |   |       login_page.dart
+|   |   |       register_page.dart
+|   |   |       setup_2fa_page.dart
+|   |   |       twofa_notif_page.dart
+|   |   |       twofa_smtp_page.dart
+|   |   |       twofa_totp_pages.dart
+|   |   |       verify_email.pages.dart
+|   |   |       
+|   |   +---history
+|   |   |       history_page.dart
+|   |   |       
+|   |   +---home
+|   |   |       home_page.dart
+|   |   |       
+|   |   +---merchant
+|   |   |       merchant_checkout_pages.dart
+|   |   |       
+|   |   +---payment
+|   |   |       payment_deeplink_page.dart
+|   |   |       payment_qr_page.dart
+|   |   |       pin_page.dart
+|   |   |       
+|   |   +---promo
+|   |   |       promo_page.dart
+|   |   |       
+|   |   +---splash
+|   |   |       splash_page.dart
+|   |   |       
+|   |   +---success
+|   |   |       success_page.dart
+|   |   |       
+|   |   +---topup
+|   |   |       topup_page.dart
+|   |   |       
+|   |   \---transfer
+|   |           transfer_amount_page.dart
+|   |           transfer_confirm_page.dart
+|   |           transfer_page.dart
+|   |           
+|   \---widgets
+|           app_avatar.dart
+|           app_badge.dart
+|           app_button.dart
+|           app_field.dart
+|           app_logo.dart
+|           app_tab_bar.dart
+|           app_top_bar.dart
+|           code_input.dart
+|           feature_icon.dart
+|           num_pad.dart
+|           pin_pad.dart
+|           success_check.dart
+|           transaction_row.dart
+|           
+\---widgets
+        logo_widget.dart
+```
+
 ## Cara Menjalankan Proyek
 1. Pastikan Anda telah menginstal **Flutter SDK** (versi `^3.9.2` atau kompatibel).
 2. Lakukan *clone* repositori atau buka folder proyek di IDE (seperti VS Code atau Android Studio).
